@@ -30,15 +30,15 @@ func part1() {
     println(count);
 }
 
+
 func is_diff_right(arr []int) bool {
-    di := true;
     for i := 1; i < len(arr); i++ {
         if diff(arr[i], arr[i-1]) > 3 {
-            di = false;
+            return false;
         }
     }
 
-    return di;
+    return true;
 }
 
 func diff(num1 int, num2 int) int {
