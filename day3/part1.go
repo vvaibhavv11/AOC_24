@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	// part1();
+	part1();
 	part2();
 }
 
@@ -26,9 +26,6 @@ func part1() {
 		}
 	}
 	println(mult);
-	// for _, m := range mul {
-	// 	println(m);
-	// }
 }
 
 func find_mul(arr string) []string {

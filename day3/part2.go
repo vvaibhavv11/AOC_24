@@ -4,38 +4,26 @@ import "regexp"
 
 func part2() {
 	input := file_to_array("./input.txt");
-	var total []int;
-	var tot int;
-	sig := 1;
+	total := 0;
+	var comman_mul []string;
 	for _, istring := range input {
-		mul := find_mul_part2(istring, sig);
-		mult := 0;
-		for _, mu := range mul {
-			// println(mul);
-			multipication := give_mul(mu);
-			mult += multipication;
+		mul := find_mul_part2(istring);
+		for _, m := range mul {
+			comman_mul = append(comman_mul, m);
 		}
-		total = append(total, mult)
 	}
-	for _, tol := range total {
-		println(tol);
+	comman_mul = real_mul_part2(comman_mul);
+	for _, mu := range comman_mul {
+		multipication := give_mul(mu);
+		total += multipication;
 	}
-	for i := 0; i < len(total); i++ {
-		tot = tot + total[i]
-	}
-	println(tot);
+	println(total);
 }
 
-
-func find_mul_part2(arr string, sig int) []string {
-	pattern := `mul\(\d{1,3},\d{1,3}\)|don't\(\)|do\(\)`;
-	re := regexp.MustCompile(pattern);
-	mul := re.FindAllString(arr, -1);
-	// for _, ml := range mul {
-	// 	println(ml)
-	// }
+func real_mul_part2(arr []string) []string {
+	sig := 1;
 	var rmul []string;
-	for _, m := range mul {
+	for _, m := range arr {
 		if m == `don't()` {
 			sig = 0;
 			continue;
@@ -49,4 +37,12 @@ func find_mul_part2(arr string, sig int) []string {
 		}
 	}
 	return rmul;
+}
+
+
+func find_mul_part2(arr string) []string {
+	pattern := `mul\(\d{1,3},\d{1,3}\)|don't\(\)|do\(\)`;
+	re := regexp.MustCompile(pattern);
+	mul := re.FindAllString(arr, -1);
+	return mul;
 }
