@@ -20,8 +20,8 @@ func part1() {
 	mult := 0;
 	for _, istring := range input {
 		mul := find_mul(istring);
-		for _, mul := range mul {
-			multipication := give_mul(mul);
+		for _, mu := range mul {
+			multipication := give_mul(mu);
 			mult += multipication;
 		}
 	}
